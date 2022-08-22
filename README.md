@@ -1,4 +1,4 @@
-# A mini tool for formatting dates, currencies, and relative times.
+### A mini tool for formatting dates, currencies, and relative times.
 
 
 ## Project Status
@@ -27,7 +27,7 @@ const format = require('sublime-formatter')
 
 ## Examples
 
-# toCurrency
+### toCurrency
 ```js
 // first parameter: number (required), Must be an integer
 // second parameter: currency (default 'XAF' => Franc CFA BEAC), You can put 'USD' => American Dollars, 'EUR' => Euro, ...
@@ -36,7 +36,7 @@ format.toCurrency(15000);
 // Output: 15 000 FCFA
 ```
 
-# relativeTime
+### relativeTime
 ```js
 // first parameter: time (required), Must be an positive or negative number
 // second parameter: unit (default 'day'), You can put 'month', 'week', ...
@@ -47,7 +47,7 @@ format.relativeTime(-1);
 // Output: hier
 ```
 
-# formatDate
+### formatDate
 ```js
 // first parameter: date (required)
 // second parameter: withTime (default false), Include time when you put `true`

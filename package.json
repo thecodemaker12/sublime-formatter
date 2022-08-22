@@ -6,6 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Thecodemaker <thecodemaker12@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thecodemaker12/sublime-formatter.git"
+  },
+  "author": {
+    "name": "Thecodemaker",
+    "email": "thecodemaker12@gmail.com",
+    "type": "git",
+    "url": "https://github.com/thecodemaker12"
+  },
+  "homepage": "https://github.com/thecodemaker12/sublime-formatter.git#readme",
   "license": "ISC"
 }
