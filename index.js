@@ -1,6 +1,15 @@
-exports.toCurrency = (number, currency = "XAF", lang = "fr") => {
+"use strict";
+
+var lang = "en";
+
+exports.locale = (lang) => {
+  this.lang = lang;
+};
+
+module.exports.toCurrency = (number, currency = "XAF") => {
   try {
-    return new Intl.NumberFormat(lang, {
+    init();
+    return new Intl.NumberFormat(this.lang, {
       style: "currency",
       currency,
     }).format(number);
@@ -9,9 +18,10 @@ exports.toCurrency = (number, currency = "XAF", lang = "fr") => {
   }
 };
 
-exports.relativeTime = (time, unit = "day", lang = "fr") => {
+module.exports.relativeTime = (time, unit = "day") => {
   try {
-    const rtf = new Intl.RelativeTimeFormat(lang, {
+    init();
+    const rtf = new Intl.RelativeTimeFormat(this.lang, {
       numeric: "auto",
       style: "long",
     });
@@ -21,10 +31,17 @@ exports.relativeTime = (time, unit = "day", lang = "fr") => {
   }
 };
 
-exports.formatDate = (date, withTime = false, lang = "fr") => {
+module.exports.formatDate = (date, withTime = false) => {
+  init();
   let options = { dateStyle: "medium", hour12: false };
   if (withTime) {
     options.timeStyle = "short";
   }
-  return new Intl.DateTimeFormat(lang, options).format(date);
+  return new Intl.DateTimeFormat(this.lang, options).format(date);
+};
+
+var init = () => {
+  if (!this.lang) {
+    this.lang = lang;
+  }
 };
