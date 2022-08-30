@@ -2,6 +2,20 @@
 
 var lang = "en";
 
+var defaultDateFormat = {
+  d: { day: "numeric" },
+  m: { month: "numeric" },
+  mt: { month: "short" },
+  M: { month: "long" },
+  y: { year: "numeric" },
+  LTS: { timeStyle: "medium", hour12: false },
+  LT: { timeStyle: "short", hour12: false },
+  L: { dateStyle: "medium" },
+  LL: { dateStyle: "long" },
+  LLL: { dateStyle: "long", timeStyle: "short", hour12: false },
+  LLLL: { dateStyle: "long", timeStyle: "long", hour12: false },
+};
+
 exports.locale = (lang) => {
   this.lang = lang;
 };
@@ -31,13 +45,14 @@ module.exports.relativeTime = (time, unit = "day") => {
   }
 };
 
-module.exports.formatDate = (date, withTime = false) => {
+module.exports.formatDate = (date, format = null) => {
   init();
-  let options = { dateStyle: "medium", hour12: false };
-  if (withTime) {
-    options.timeStyle = "short";
+  if (format) {
+     format = checkFormat(format);
+  } else {
+    format = {}
   }
-  return new Intl.DateTimeFormat(this.lang, options).format(date);
+  return new Intl.DateTimeFormat(this.lang, format).format(date);
 };
 
 var init = () => {
@@ -45,3 +60,11 @@ var init = () => {
     this.lang = lang;
   }
 };
+
+function checkFormat(format) {
+  const findFormat = defaultDateFormat[format];
+  if (findFormat) {
+    return findFormat;
+  }
+  console.error('Error: invalid format !');
+}
